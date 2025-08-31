@@ -1,70 +1,152 @@
-# Getting Started with Create React App
+# LeetCode Profile Tracker - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React-based web application for comparing LeetCode user profiles with beautiful visualizations and comprehensive analytics.
 
-## Available Scripts
+## 🚀 Features
 
-In the project directory, you can run:
+- **Dual User Comparison**: Compare two LeetCode profiles side by side
+- **Rich Visualizations**: Interactive charts including Doughnut and Bar charts
+- **Performance Metrics**: Total questions, active days, profile rank comparison
+- **Skills Analysis**: Detailed skills proficiency comparison
+- **Recent Activity**: Recently solved questions display
+- **Winner Highlights**: Visual indicators for winning metrics
+- **Responsive Design**: Mobile-friendly interface
+- **Demo Mode**: Automatic sample data for showcasing
 
-### `npm start`
+## 🎭 Demo Mode
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The app includes a demo button that automatically loads sample data from the backend when the scraping fails. This allows users to see the full functionality without needing real LeetCode usernames.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Demo Data Features:
+- **DemoUser1**: 847 total questions, 156 active days, rank #1250
+- **DemoUser2**: 623 total questions, 98 active days, rank #2150
+- Sample skills data, difficulty breakdowns, and recently solved questions
+- Realistic badge images and profile information
 
-### `npm test`
+### How Demo Mode Works:
+1. **Click "🎭 Try Demo Data"** button
+2. **Backend automatically provides** sample data when scraping fails
+3. **Full app functionality** is demonstrated with realistic data
+4. **No external dependencies** required for demo functionality
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Backend Dummy Data:
+- Dummy data is stored in `backend/dummy.json`
+- Automatically served when scraping fails
+- Can be accessed directly via `/dummy/user1` and `/dummy/user2` endpoints
+- Test with `node test-dummy.js` in backend directory
 
-### `npm run build`
+## 🛠️ Development
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Installation
+```bash
+cd frontend
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Running Locally
+```bash
+npm start
+```
+The app will run on `http://localhost:3000`
 
-### `npm run eject`
+### Building for Production
+```bash
+npm run build
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🌐 Deployment
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Netlify
+1. Connect your GitHub repository
+2. Set build command: `npm run build`
+3. Set publish directory: `build`
+4. Deploy!
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Vercel
+1. Import your GitHub repository
+2. Framework preset: Create React App
+3. Deploy!
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### GitHub Pages
+1. Add to package.json:
+```json
+"homepage": "https://yourusername.github.io/your-repo-name",
+"scripts": {
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build"
+}
+```
+2. Install gh-pages: `npm install --save-dev gh-pages`
+3. Deploy: `npm run deploy`
 
-## Learn More
+## 📱 Responsive Design
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The app is fully responsive with breakpoints at:
+- **Desktop**: 1200px+
+- **Tablet**: 768px - 1199px
+- **Mobile**: 480px - 767px
+- **Small Mobile**: < 480px
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🎨 Customization
 
-### Code Splitting
+### Colors
+The app uses a consistent color palette defined in `Scrape.jsx`:
+- **Easy Problems**: Green (#10B981)
+- **Medium Problems**: Orange (#F59E0B)
+- **Hard Problems**: Red (#EF4444)
+- **Skills**: Blue, Purple, Pink, Orange, Cyan, Green
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Styling
+All styles are in `Scrape.css` with:
+- Modern dark theme
+- Smooth animations and transitions
+- Glassmorphism effects
+- Hover states and interactions
 
-### Analyzing the Bundle Size
+## 🔧 Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Environment Variables
+- `NODE_ENV`: Set to 'production' for demo mode
+- `REACT_APP_API_URL`: Backend API URL (optional for demo)
 
-### Making a Progressive Web App
+### Demo Mode Detection
+The app automatically detects production deployment and loads demo data when:
+- `NODE_ENV === 'production'` OR
+- Hostname is not 'localhost'
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 📊 Data Structure
 
-### Advanced Configuration
+The demo data follows the same structure as the real LeetCode API:
+```json
+{
+  "TotalAttempted": 847,
+  "ActiveDays": 156,
+  "ProfileRank": 1250,
+  "NumberOfBadges": 12,
+  "Badges": ["url1", "url2"],
+  "SectionAttempted": [342, 0, 398, 0, 107],
+  "Skills": ["Array", "String"],
+  "elements": [156, 134],
+  "RecentlySolveds": ["Two Sum", "Valid Parentheses"]
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 🚀 Getting Started
 
-### Deployment
+1. **Clone the repository**
+2. **Install dependencies**: `npm install`
+3. **Start development**: `npm start`
+4. **Build for production**: `npm run build`
+5. **Deploy to your preferred platform**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 📝 License
 
-### `npm run build` fails to minify
+This project is open source and available under the MIT License.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
