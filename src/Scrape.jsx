@@ -39,15 +39,13 @@ const Scrape = () => {
     const [comparisonMode, setComparisonMode] = useState(false);
     const [showResetModal, setShowResetModal] = useState(false);
 
-    // Consistent color palette
     const chartColors = {
-        easy: '#10B981',      // Green
-        medium: '#F59E0B',    // Orange
-        hard: '#EF4444',      // Red
+        easy: '#10B981',     
+        medium: '#F59E0B',    
+        hard: '#EF4444',      
         skills: ['#3B82F6', '#8B5CF6', '#EC4899', '#F97316', '#06B6D4', '#84CC16']
     };
 
-    // Local demo data as fallback
     const localDemoData = {
         user1: {
             TotalAttempted: 847,
@@ -62,7 +60,7 @@ const Scrape = () => {
             ],
             SectionAttempted: [342, 0, 398, 0, 107],
             Skills: ["Array", "String", "Hash Table", "Dynamic Programming", "Math", "Tree"],
-            elements: [156, 134, 98, 87, 76, 65],
+            elements: [156, 134, 98, , 76, 65],
             RecentlySolveds: [
                 "Two Sum",
                 "Valid Parentheses",
@@ -74,7 +72,7 @@ const Scrape = () => {
         },
         user2: {
             TotalAttempted: 623,
-            ActiveDays: 98,
+            ActiveDays: 198,
             ProfileRank: 2150,
             NumberOfBadges: 8,
             Badges: [
@@ -83,7 +81,7 @@ const Scrape = () => {
                 "https://leetcode.com/static/images/badges/2023/2023-09-01.png",
                 "https://leetcode.com/static/images/badges/2023/2023-08-01.png"
             ],
-            SectionAttempted: [245, 0, 298, 0, 80],
+            SectionAttempted: [245, 80, 298, 0, 180],
             Skills: ["Array", "String", "Hash Table", "Dynamic Programming", "Math", "Tree"],
             elements: [112, 98, 76, 65, 54, 43],
             RecentlySolveds: [
