@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import axios from 'axios';
 import Spinner from './Spinner';
 import './Scrape.css';
@@ -58,9 +58,9 @@ const Scrape = () => {
                 "https://leetcode.com/static/images/badges/2023/2023-10-01.png",
                 "https://leetcode.com/static/images/badges/2023/2023-09-01.png"
             ],
-            SectionAttempted: [342, 0, 398, 0, 107],
+            SectionAttempted: [342, 0, 398, 5, 107],
             Skills: ["Array", "String", "Hash Table", "Dynamic Programming", "Math", "Tree"],
-            elements: [156, 134, 98, , 76, 65],
+            elements: [156, 134, 98, 6, 76, 65],
             RecentlySolveds: [
                 "Two Sum",
                 "Valid Parentheses",
@@ -118,8 +118,8 @@ const Scrape = () => {
             }
 
             const [response1, response2] = await Promise.all([
-                axios.get(`http://localhost:5000/scrape/${username1}`),
-                axios.get(`http://localhost:5000/scrape/${username2}`)
+                axios.get(`https://leetcodolio-backend.vercel.app/scrape/${username1}`),
+                axios.get(`https://leetcodolio-backend.vercel.app/scrape/${username2}`)
             ]);
 
             setData1(response1.data);
@@ -127,7 +127,7 @@ const Scrape = () => {
             setFetchedUsername1(username1);
             setFetchedUsername2(username2);
             setComparisonMode(true);
-            toast.success("Both profiles fetched successfully!");
+            toast.success("Profiles fetched successfully!");
             setUsername1("");
             setUsername2("");
         }
@@ -173,33 +173,14 @@ const Scrape = () => {
         setShowResetModal(false);
     }
 
-    // Test backend connectivity
-    const testBackendConnection = async () => {
-        try {
-            const response = await axios.get('http://localhost:5000/dummy/user1', { timeout: 3000 });
-            return response.status === 200;
-        } catch (error) {
-            return false;
-        }
-    };
 
     function RenderEmptyState() {
-        const [backendStatus, setBackendStatus] = useState('checking');
-        React.useEffect(() => {
-            testBackendConnection().then(isConnected => {
-                setBackendStatus(isConnected ? 'connected' : 'disconnected');
-            });
-        }, []);
         return (
             <div className="empty-state">
                 <div className="empty-icon">📊</div>
                 <h3>Ready to Compare LeetCode Profiles?</h3>
                 <p>Enter two usernames above to start comparing their coding achievements, skills, and progress.</p>
-                <div className={`backend-status ${backendStatus}`}>
-                    {backendStatus === 'checking' && '🔄 Checking backend connection...'}
-                    {backendStatus === 'connected' && '✅ Backend connected - Real profiles available'}
-                    {backendStatus === 'disconnected' && '⚠️ Backend offline - Demo mode only'}
-                </div>
+               
                 <div className="demo-info">
                     💡 <strong>Demo Mode:</strong> Click "🎭 Try Demo Data" to see the app in action with sample profiles!
                 </div>
@@ -593,7 +574,7 @@ const Scrape = () => {
                             setFetchedUsername1("DemoUser1");
                             setFetchedUsername2("DemoUser2");
                             setComparisonMode(true);
-                            toast.info("Demo profiles loaded from local data (backend unavailable)");
+                            toast.info("Demo profiles loaded from local data");
                             setUsername1("");
                             setUsername2("");
                         }).finally(() => {
