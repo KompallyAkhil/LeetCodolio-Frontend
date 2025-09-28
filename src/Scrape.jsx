@@ -542,6 +542,9 @@ const Scrape = () => {
                             />
                         </div>
                     </div>
+                    <div>
+                        <p>Examples : Your Name and rahulvarma5297 </p>
+                    </div>
                 </div>
                 
                 <div className="button-group">
